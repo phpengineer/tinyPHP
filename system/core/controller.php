@@ -42,11 +42,11 @@ class Controller{
         
         
         /**
-         * 加载系统配置,默认为系统配置 $CONFIG['system'][$config]
+         * 加载系统配置,默认为系统配置 $config['system'][$config]
          * @access      final   protected
          * @param       string  $config 配置名  
          */
-        final   protected function config($config) {
+        final protected function config($config) {
                 return Application::$_config[$config];
         }
         
@@ -57,9 +57,10 @@ class Controller{
          * @param       string  $path   模板路径
          * @return      string  模板字符串
          */
-        final protected function showTemplate($path, $data = array()) {
+        final protected function show($path, $data = array()) {
+        		$path = strtolower(str_replace('Controller', '', get_class($this)) . '/' . $path);
                 $template =  $this->load('template');
-                $template->init($path,$data);
+                $template->init($path, $data);
                 $template->outPut();
         }
 }

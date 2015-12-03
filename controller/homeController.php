@@ -6,8 +6,8 @@ class homeController extends Controller {
         }
 
         public function index() {
-                var_dump('aa');
-                exit();
+        	$data['c'] = array('a' => 1, 'b' => 2);
+        	$this->show('home', $data);
         }
 }
 
