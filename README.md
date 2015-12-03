@@ -25,7 +25,6 @@ app
  1、在项目的controller下建立业务的controller，如TestController
 
 <?php
-
 class TestController extends Controller {
         
 		public function __construct() {
@@ -45,7 +44,6 @@ class TestController extends Controller {
 2、在对应的model下建立TestModel,如下：
 
 <?php
-
 class TestModel extends Model {
 		private  $table = 'test';	
         public function getTestData() {
