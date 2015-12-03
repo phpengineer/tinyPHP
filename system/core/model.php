@@ -13,14 +13,15 @@ class Model {
                 $config_db = $this->config('db');
                 //初始话数据库类
                 $this->db->init(
-                        $config_db['db_host'],
-                        $config_db['db_user'],
-                        $config_db['db_password'],
-                        $config_db['db_database'],
-                        $config_db['db_conn'],
-                        $config_db['db_charset']
+                        	$config_db['db_host'],
+                       		$config_db['db_user'],
+                        	$config_db['db_password'],
+                        	$config_db['db_database'],
+                        	$config_db['db_conn'],
+                        	$config_db['db_charset']
                       );
         }
+        
         /**
          * 根据表前缀获取表名
          * @access      final   protected
@@ -30,6 +31,7 @@ class Model {
                 $config_db = $this->config('db');
                 return $config_db['db_table_prefix'] . $table_name;
         }
+        
         /**
          * 加载类库
          * @param string $lib   类库名称
@@ -45,6 +47,7 @@ class Model {
                         return  Application::newLib($lib);
                 }
         }
+        
         /**
          * 加载系统配置,默认为系统配置 $CONFIG['system'][$config]
          * @access      final   protected
@@ -53,7 +56,6 @@ class Model {
         final protected function config($config = '') {
                 return Application::$_config[$config];
         }
-        
         
         
 

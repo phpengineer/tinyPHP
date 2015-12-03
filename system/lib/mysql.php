@@ -20,7 +20,7 @@ final class Mysql {
 	private $is_error = false; //发现错误是否立即终止,默认true,建议不启用，因为当有问题时用户什么也看不到是很苦恼的
 
     /*初始化函数*/
-    public static function init($db_host, $db_user, $db_pwd, $db_database, $conn, $coding) {
+    public function init($db_host, $db_user, $db_pwd, $db_database, $conn, $coding) {
 		$this->db_host = $db_host;
 		$this->db_user = $db_user;
 		$this->db_pwd = $db_pwd;
@@ -32,7 +32,7 @@ final class Mysql {
 	
 	private function instance() {
 		if($this->conn == null) {
-			$this->conn = self::connect();
+			$this->connect();
 			return $this->conn;
 		} else {
 			return $this->conn;
@@ -72,7 +72,30 @@ final class Mysql {
 		} else {
 			$this->result = $result;
 		}
-		return $this->result;
+		return $this;
+	}
+	
+	/*取得记录集,获取数组-索引和关联,使用$row['content'] */
+	public function getArray() {
+		return $this->getData('array');
+	}
+	
+	//获取关联数组,使用$row['字段名']
+	public function getAssoc() {
+		return $this->getData('assoc');
+	}
+	
+	//获取对象数组,使用$row->content
+	public function getObject() {
+		return $this->getData('object');
+	}
+	
+	private  function getData($str) {
+		$handel = 'mysql_fetch_' . $str;
+		while($row = $handel($this->result)) {
+			$data[] = $row;
+		}
+		return $data;
 	}
 	
 	/*创建添加新的数据库*/
@@ -121,71 +144,48 @@ final class Mysql {
 			$i++;
 		}
 	}
-	/*
-	mysql_fetch_row()    array  $row[0],$row[1],$row[2]
-	mysql_fetch_array()  array  $row[0] 或 $row[id]
-	mysql_fetch_assoc()  array  用$row->content 字段大小写敏感
-	mysql_fetch_object() object 用$row[id],$row[content] 字段大小写敏感
-	*/
+	
 	/*取得结果数据*/
 	public function mysql_result_li() {
 		return mysql_result($str);
 	}
-	/*取得记录集,获取数组-索引和关联,使用$row['content'] */
-	public function fetch_array() {
-		return mysql_fetch_array($this->result);
+	
+
+	public function findAll($table) {
+		return $this->query("SELECT * FROM $table");
 	}
-	//获取关联数组,使用$row['字段名']
-	public function fetch_assoc() {
-		return mysql_fetch_assoc($this->result);
-	}
-	//获取数字索引数组,使用$row[0],$row[1],$row[2]
-	public function fetch_row() {
-		return mysql_fetch_row($this->result);
-	}
-	//获取对象数组,使用$row->content
-	public function fetch_Object() {
-		return mysql_fetch_object($this->result);
-	}
-	//简化查询select
-	public function findall($table) {
-		$this->query("SELECT * FROM $table");
-	}
-	//简化查询select
+	
+
 	public function select($table, $columnName = "*", $condition = '', $debug = '') {
 		$condition = $condition ? ' Where ' . $condition : NULL;
 		if ($debug) {
 			echo "SELECT $columnName FROM $table $condition";
 		} else {
-			$this->query("SELECT $columnName FROM $table $condition");
+			return $this->query("SELECT $columnName FROM $table $condition");
 		}
 	}
-	//简化删除del
+	
+
 	public function delete($table, $condition, $url = '') {
-		if ($this->query("DELETE FROM $table WHERE $condition")) {
-			if (!empty ($url))
-				$this->Get_admin_msg($url, '删除成功！');
-		}
+		return $this->query("DELETE FROM $table WHERE $condition");
 	}
-	//简化插入insert
+	
+
 	public function insert($table, $columnName, $value, $url = '') {
-		if ($this->query("INSERT INTO $table ($columnName) VALUES ($value)")) {
-			if (!empty ($url))
-				$this->Get_admin_msg($url, '添加成功！');
-		}
+		return $this->query("INSERT INTO $table ($columnName) VALUES ($value)");
+			
 	}
-	//简化修改update
+	
+
 	public function update($table, $mod_content, $condition, $url = '') {
 		//echo "UPDATE $table SET $mod_content WHERE $condition"; exit();
-		if ($this->query("UPDATE $table SET $mod_content WHERE $condition")) {
-			if (!empty ($url))
-				$this->Get_admin_msg($url);
-		}
+		return $this->query("UPDATE $table SET $mod_content WHERE $condition");
 	}
-	/*取得上一步 INSERT 操作产生的 ID*/
+	
 	public function insert_id() {
 		return mysql_insert_id();
 	}
+	
 	//指向确定的一条数据记录
 	public function db_data_seek($id) {
 		if ($id > 0) {
@@ -196,6 +196,7 @@ final class Mysql {
 		}
 		return $this->result;
 	}
+	
 	// 根据select查询结果计算结果集条数
 	public function db_num_rows() {
 		if ($this->result == null) {
@@ -206,10 +207,11 @@ final class Mysql {
 			return mysql_num_rows($this->result);
 		}
 	}
-	// 根据insert,update,delete执行结果取得影响行数
+
 	public function db_affected_rows() {
 		return mysql_affected_rows();
 	}
+	
 	//输出显示sql语句
 	public function show_error($message = "", $sql = "") {
 		if (!$sql) {
@@ -322,6 +324,7 @@ final class Mysql {
 		echo "</pre>";
 		echo "<br />";
 	}
+	
 	//取得 MySQL 服务器信息
 	public function mysql_server($num = '') {
 		switch ($num) {
@@ -341,7 +344,7 @@ final class Mysql {
 				return mysql_get_client_info(); //默认取得mysql版本信息
 		}
 	}
-	//析构函数，自动关闭数据库,垃圾回收机制
+	
 	public function __destruct() {
 		if (!empty ($this->result)) {
 			$this->free();
@@ -349,8 +352,9 @@ final class Mysql {
 		}
 		
 	}
+	
 	/*获得客户端真实的IP地址*/
-	function getip() {
+	protected function getip() {
 		if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) {
 			$ip = getenv("HTTP_CLIENT_IP");
 		} else
@@ -368,7 +372,7 @@ final class Mysql {
 		return ($ip);
 	}
 	
-	function inject_check($sql_str) { //防止注入
+	protected function inject_check($sql_str) { //防止注入
 		$check = eregi('select|insert|update|delete|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile', $sql_str);
 		if ($check) {
 			echo "输入非法注入内容！";
@@ -377,7 +381,8 @@ final class Mysql {
 			return $sql_str;
 		}
 	}
-	function checkurl() { //检查来路
+	
+	protected function checkurl() { //检查来路
 		if (preg_replace("/https?:\/\/([^\:\/]+).*/i", "\\1", $_SERVER['HTTP_REFERER']) !== preg_replace("/([^\:]+).*/", "\\1", $_SERVER['HTTP_HOST'])) {
 			header("Location: /");
 			exit();

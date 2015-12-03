@@ -1,4 +1,5 @@
 <html>
+<meta charset="UTF-8">
         <header>
                 <title>测试页面</title>
         </header>
