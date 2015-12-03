@@ -1,5 +1,6 @@
 # tinyPHP
-A  tiny，useful，simple framework of  php
+A  tiny，useful，simple，mvc framework of  php
+框架具备基本的路由分发，自动加载，模板解析等功能，以上的功能都做过基准测试，整个过程能够跑通。后续将继续完善，会增加异常处理，日志，session处理等功能。
 
 框架目录结构:
 
