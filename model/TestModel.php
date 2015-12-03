@@ -11,9 +11,6 @@ class TestModel extends Model {
              return $result;
         }
         
-        public function testResult() {
-             $this->db->show_databases();
-        }
 }
 
 
