@@ -50,7 +50,7 @@ class Model {
          * @access      final   protected
          * @param       string  $config 配置名  
          */
-        final   protected function config($config='') {
+        final protected function config($config = '') {
                 return Application::$_config[$config];
         }
         

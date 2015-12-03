@@ -30,12 +30,12 @@ class Controller{
          * @param Bool  $my     如果FALSE默认加载系统自动加载的类库，如果为TRUE则加载非自动加载类库
          * @return type 
          */
-        final protected function load($lib,$auto = TRUE){
-                if(empty($lib)){
+        final protected function load($lib, $auto = TRUE) {
+                if(empty($lib)) {
                         trigger_error('加载类库名不能为空');
-                }elseif($auto === TRUE){
+                }elseif($auto === TRUE) {
                         return Application::$_lib[$lib]; 
-                }elseif($auto === FALSE){
+                }elseif($auto === FALSE) {
                         return  Application::newLib($lib);
                 }
         }
@@ -46,7 +46,7 @@ class Controller{
          * @access      final   protected
          * @param       string  $config 配置名  
          */
-        final   protected function config($config){
+        final   protected function config($config) {
                 return Application::$_config[$config];
         }
         
@@ -57,7 +57,7 @@ class Controller{
          * @param       string  $path   模板路径
          * @return      string  模板字符串
          */
-        final protected function showTemplate($path, $data = array()){
+        final protected function showTemplate($path, $data = array()) {
                 $template =  $this->load('template');
                 $template->init($path,$data);
                 $template->outPut();

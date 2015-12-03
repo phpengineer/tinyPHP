@@ -20,9 +20,9 @@ final class Application {
 	public static $_config = null;
 	
 	public static function init() {
-		self::setLibsAutoLoad();
+		self::autoLoadLibs();
 		require SYS_CORE_PATH . '/model.php';
-		require SYS_CORE_PATH . '/controoler.php';
+		require SYS_CORE_PATH . '/controller.php';
 	}
 	
 	/**
@@ -80,7 +80,7 @@ final class Application {
 	/**
 	 * 自动加载类库
 	 */
-	public static function setAutoLibs(){
+	public static function autoLoadLibs(){
 		self::$_lib = array(
 				'route'  => SYS_LIB_PATH . '/route.php',
 				'mysql'  => SYS_LIB_PATH . '/mysql.php',
@@ -143,7 +143,8 @@ final class Application {
 				require $model_file;
 			}
 			require $controller_file;
-			$controller = new $controller . 'Controller';
+			$controller = $controller . 'Controller';
+			$controller = new $controller;
 			if($action) {
 				if(method_exists($controller, $action)) {
 					isset($params) ? $controller->$action($params) : $controller->action();

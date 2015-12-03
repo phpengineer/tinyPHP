@@ -31,11 +31,11 @@ final class Mysql {
 	}
 	
 	private function instance() {
-		if(self::$conn == null) {
-			self::$conn = self::connect();
-			return self::$conn;
+		if($this->conn == null) {
+			$this->conn = self::connect();
+			return $this->conn;
 		} else {
-			return self::$conn;
+			return $this->conn;
 		}
 	}
 	
@@ -298,14 +298,17 @@ final class Mysql {
 		echo "</fieldset>";
 		echo "<br />";
 	}
+	
 	//释放结果集
 	public function free() {
 		@ mysql_free_result($this->result);
 	}
+	
 	//数据库选择
 	public function select_db($db_database) {
 		return mysql_select_db($db_database);
 	}
+	
 	//查询字段数量
 	public function num_fields($table_name) {
 		//return mysql_num_fields($this->result);
@@ -342,8 +345,9 @@ final class Mysql {
 	public function __destruct() {
 		if (!empty ($this->result)) {
 			$this->free();
+			mysql_close($this->conn);
 		}
-		mysql_close($this->conn);
+		
 	}
 	/*获得客户端真实的IP地址*/
 	function getip() {
