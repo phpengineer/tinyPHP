@@ -24,8 +24,8 @@ app
  用法举例：
  1、在项目的controller下建立业务的controller，如TestController
 
+<?php
 class TestController extends Controller {
-        
         public function __construct() {
                 parent::__construct();
         }
@@ -39,15 +39,16 @@ class TestController extends Controller {
         }
 }
 
+
 2、在对应的model下建立TestModel,如下：
+<?php
 class TestModel extends Model {
-		private  $table = 'test';
-	
+
+		private  $table = 'test';	
         public function getTestData() {
              $result = $this->db->select($this->table)->getAssoc();
              return $result;
-        }
-        
+        }    
 }
 
 3、在对应的view下，建立跟contoller类名相同的目录，这个例子建立的是一个test目录
