@@ -7,7 +7,7 @@ app
 
  |-controller	存放控制器文件
  
- |-model		存放模型文件
+ |-model        存放模型文件
  
  |-view		存放视图文件
  
@@ -24,10 +24,9 @@ app
  用法举例：
  1、在项目的controller下建立业务的controller，如TestController
 
-<?php
 class TestController extends Controller {
         
-		public function __construct() {
+	public function __construct() {
                 parent::__construct();
         }
 
@@ -43,8 +42,9 @@ class TestController extends Controller {
 
 2、在对应的model下建立TestModel,如下：
 
-<?php
+
 class TestModel extends Model {
+
 		private  $table = 'test';	
         public function getTestData() {
              $result = $this->db->select($this->table)->getAssoc();
