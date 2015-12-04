@@ -236,10 +236,10 @@ final class Mysql {
 				$message = $message . "\r\n$this->sql" . "\r\n客户IP:$ip" . "\r\n时间 :$time" . "\r\n\r\n";
 				$server_date = date("Y-m-d");
 				$filename = $server_date . "_SQL.txt";
-				$file_path = ROOT_PATH."/error/" . $filename;
+				$file_path = LOG_PATH . "/error/" . $filename;
 				$error_content = $message;
 				//$error_content="错误的数据库，不可以链接";
-				$file = ROOT_PATH."/error"; //设置文件保存目录
+				$file = LOG_PATH . "/error"; //设置文件保存目录
 				//建立文件夹
 				if (!file_exists($file)) {
 					if (!mkdir($file, 0777)) {
