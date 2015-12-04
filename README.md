@@ -55,8 +55,18 @@ class TestModel extends Model {
 }
 
 3、在对应的view下，建立跟contoller类名相同的目录，这个例子建立的是一个test目录
-然后建立一个php文件，即模板。
-$this->show('index', $data) 中的index即为模板。
+然后建立一个php文件，即模板，在模板的html中适当位置输出变量$result。
+
+	<?php
+	
+		foreach($result as $k => $v) {
+		
+			print_r($v['name']);
+			
+			echo "<br/>";
+		}
+		
+	?>
 
 
 好了，是不是很简单！？
