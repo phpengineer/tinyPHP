@@ -69,7 +69,7 @@ class TestModel extends Model {
 	?>
 
 
-好了，是不是很简单！？
+访问http://localhost/index.php?controller=Test&action=index，好了，是不是很简单！？
 
 
 
