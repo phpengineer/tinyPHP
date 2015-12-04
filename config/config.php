@@ -42,6 +42,31 @@ $config['system']['cache'] = array(
 );
 
 
+/**
+ * 日志配置，记录到数据库
+ * columns对应的数组为要记录的字段
+ */
+$config['system']['log'] = array(
+		'type' => 'database',
+		'database' => array(
+			'table' => 'log',
+			'columns' => array(
+				'controller',
+				'action',
+				'get',
+				'post',
+				'message',
+				'ip',
+				'user_agent',
+				'referer',
+				'account_id',
+				'create_time',
+			),
+		),
+);
+
+
+
 
 
 

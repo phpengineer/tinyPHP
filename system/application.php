@@ -84,6 +84,7 @@ final class Application {
 		self::$_lib = array(
 				'route'  => SYS_LIB_PATH . '/route.php',
 				'mysql'  => SYS_LIB_PATH . '/mysql.php',
+				'logger' => SYS_LIB_PATH . '/logger.php',
 				'template' => SYS_LIB_PATH . '/template.php',
 				'cache' => SYS_LIB_PATH . '/cache.php',
 		);

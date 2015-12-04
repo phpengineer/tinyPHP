@@ -1,0 +1,30 @@
+错误SQL语句：
+INSERT INTO log (Array) VALUES (Array)
+客户IP:127.0.0.1
+时间 :2015-12-04 15:30:44
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,account_id,create_time) VALUES (Test,insert,{"controller":"Test","action":"insert"},[],["a","b"],127.0.0.1,,Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0,0,1449214428)
+客户IP:127.0.0.1
+时间 :2015-12-04 15:33:48
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,account_id,create_time) VALUES (Test,)
+客户IP:127.0.0.1
+时间 :2015-12-04 15:55:58
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,account_id,create_time) VALUES ('Test','insert','{"controller":"Test"','"action":"insert"}','[]','["a"','"b"]','127.0.0.1',' ','Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0','0','1449216009')
+客户IP:127.0.0.1
+时间 :2015-12-04 16:00:09
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent) VALUES ('Test','insert','{"controller":"Test"','"action":"insert"}','[]','["a"','"b"]','127.0.0.1',' ','Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0')
+客户IP:127.0.0.1
+时间 :2015-12-04 16:00:57
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,account_id,create_time) VALUES ('Test','insert','{"controller":"Test"','"action":"insert"}','[]','["a"','"b"]','127.0.0.1',' ','Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0','0','1449216588')
+客户IP:127.0.0.1
+时间 :2015-12-04 16:09:48
+

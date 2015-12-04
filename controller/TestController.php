@@ -7,5 +7,10 @@ class TestController extends Controller {
         	$data['result'] = $result;
 			$this->show('index', $data);
         }
+        
+        public function insert() {
+        	$message = json_encode(array('a', 'b'));
+        	Logger::write($message, 'log');
+        }
 }
 

@@ -1,0 +1,25 @@
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,create_time) VALUES (Test,insert,{"controller":"Test","action":"insert"},[],["a","b"],127.0.0.1,,Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0,1449212139)
+客户IP:127.0.0.1
+时间 :2015-12-04 14:55:39
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,create_time) VALUES ("Test,insert,{\"controller\":\"Test\",\"action\":\"insert\"},[],[\"a\",\"b\"],127.0.0.1,,Mozilla\/5.0 (Windows NT 6.1; rv:42.0) Gecko\/20100101 Firefox\/42.0,1449212487")
+客户IP:127.0.0.1
+时间 :2015-12-04 15:01:27
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,create_time) VALUES ('a','b','a','b','a', 'b','a', 'b','a)
+客户IP:127.0.0.1
+时间 :2015-12-04 15:10:11
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,create_time) VALUES ('a','b','a','b','a', 'b','a', 'b','a','a','a')
+客户IP:127.0.0.1
+时间 :2015-12-04 15:11:40
+
+错误SQL语句：
+INSERT INTO log (controller,action,get,post,message,ip,referer,user_agent,create_time) VALUES (Test,insert,{"controller":"Test","action":"insert"},[],["a","b"],127.0.0.1,,Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0,1449213558)
+客户IP:127.0.0.1
+时间 :2015-12-04 15:19:18
+

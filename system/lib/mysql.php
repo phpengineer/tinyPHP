@@ -167,19 +167,20 @@ final class Mysql {
 	
 
 	public function delete($table, $condition, $url = '') {
-		return $this->query("DELETE FROM $table WHERE $condition");
+		$this->query("DELETE FROM $table WHERE $condition");
+		return $this->db_affected_rows();
 	}
 	
 
-	public function insert($table, $columnName, $value, $url = '') {
-		return $this->query("INSERT INTO $table ($columnName) VALUES ($value)");
-			
+	public function insert($table, $columnName, $value) {
+		 $this->query("INSERT INTO $table ($columnName) VALUES ($value)");
+		 return $this->db_affected_rows();
 	}
 	
 
 	public function update($table, $mod_content, $condition, $url = '') {
-		//echo "UPDATE $table SET $mod_content WHERE $condition"; exit();
-		return $this->query("UPDATE $table SET $mod_content WHERE $condition");
+		 $this->query("UPDATE $table SET $mod_content WHERE $condition");
+		 return $this->db_affected_rows();
 	}
 	
 	public function insert_id() {
